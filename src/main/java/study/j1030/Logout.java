@@ -21,6 +21,7 @@ public class Logout extends HttpServlet {
 		
 		System.out.println("1.mid : " + mid);
 		System.out.println("2.mid : " + mid);
+		System.out.println("3.mid : " + mid);
 		
 		// mid회원에 대한 세션/DB처리할 내용들을 모두 처리한후 로그아웃되었다는 메세지를 띄울수 있도록 한다.
 		
