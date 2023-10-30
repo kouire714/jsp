@@ -5,14 +5,15 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/j1026/test10Ok")
-public class Test10Ok extends HttpServlet {
+@WebServlet("/j1026/test12Ok")
+public class Test12Ok extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -29,7 +30,7 @@ public class Test10Ok extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if(name.equals("") || age < 20) {
 			// 가입조건을 만족하지 않았기에 다시 가입창으로 전송시켜준다.
-			response.sendRedirect(request.getContextPath()+"/study/1026/test10.jsp?flag=no");
+			response.sendRedirect(request.getContextPath()+"/study/1026/test11.jsp?flag=no");
 		}
 		
 		else {
@@ -47,17 +48,26 @@ public class Test10Ok extends HttpServlet {
 			System.out.println("job : " + job);
 			
 //			DB저장 완료 후 jsp로 이동처리 한다.
-//			out.println("<script>");
-//			out.println("alert('회원가입이 성공적으로 되었습니다. ');");
-//			out.println("location.href='"+request.getContextPath()+"/study/1026/test8.jsp';");
-//			out.println("</script>");
+
+//			response.sendRedirect(request.getContextPath()+"/study/1026/test11Res.jsp?name="+name+"&age="+age+"&gender=&hobbys&job="+name);
 			
-//			response.sendRedirect(request.getContextPath()+"/study/1026/test9.jsp?flag=ok");	// Front의 location.href방식과 같은 방식이다.
+//			request저장소에 전송하려고 하는 자료들을 모두 담아준다. : request("변수명", 전송값)
+			request.setAttribute("name", name);
+			request.setAttribute("age", age);
+			request.setAttribute("gender", gender);
+			request.setAttribute("hobby", hobby);
+			request.setAttribute("job", job);
 			
-			// 한글인 경우는 인코딩 문제로 브라우저에서 에러로 체크된다.
-			name = URLEncoder.encode(name, "utf-8");
-			// response 방식 location.href방식과 같은 방식이다. get 방식, 잠시 세우고.. query문으로 자료 추가, 보안이 안되고 누락 가능성
-			response.sendRedirect(request.getContextPath()+"/study/1026/test10Res.jsp?name="+name+"&age="+age+"&gender=&hobbys&job="+name);
+//			dispatcher의 경우 첫번째 / = webapp으로 설정되므로 request.getContextPath()를 적어주지 않음
+//			servlet의 경우 request.getContextPath()를 적어야 절대경로가 성립됨
+//			현재위치 경로가 request.getContextPath()인 jsp의 경우 적어주지 않으면 상대경로로 성립됨
+//			String viewPage = "/study/1026/test12Msg.jsp";
+//			String viewPage = "<%=request.getContextPath()%>/study/1026/test12Res.jsp";
+			String viewPage = "/study/1026/test12Res.jsp";
+			
+			// 직렬화 멈추지 않고 진행 처음변경 주소만 노출됨 sendRedirect를 다시 사용하면 주소가 다시 설정됨
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 		}
 	}
 }
