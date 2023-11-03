@@ -7,7 +7,7 @@ public class LoginVO {
 	private String name;
 	private int point;
 	private String lastDate;
-	private String todayCount;
+	private int todayCount;
 	
 	public int getIdx() {
 		return idx;
@@ -45,10 +45,10 @@ public class LoginVO {
 	public void setLastDate(String lastDate) {
 		this.lastDate = lastDate;
 	}
-	public String getTodayCount() {
+	public int getTodayCount() {
 		return todayCount;
 	}
-	public void setTodayCount(String todayCount) {
+	public void setTodayCount(int todayCount) {
 		this.todayCount = todayCount;
 	}
 	
@@ -57,5 +57,4 @@ public class LoginVO {
 		return "LoginVO [idx=" + idx + ", mid=" + mid + ", pwd=" + pwd + ", name=" + name + ", point=" + point
 				+ ", lastDate=" + lastDate + ", todayCount=" + todayCount + "]";
 	}
-	
 }
