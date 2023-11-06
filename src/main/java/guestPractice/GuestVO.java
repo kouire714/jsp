@@ -1,6 +1,7 @@
-package guest;
+package guestPractice;
 
 public class GuestVO {
+	
 	private int idx;
 	private String name;
 	private String content;
@@ -57,4 +58,5 @@ public class GuestVO {
 		return "GuestVO [idx=" + idx + ", name=" + name + ", content=" + content + ", email=" + email + ", homePage="
 				+ homePage + ", visitDate=" + visitDate + ", hostIp=" + hostIp + "]";
 	}
+	
 }

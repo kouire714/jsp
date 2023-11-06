@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Test5
  */
-@WebServlet("/Test6")
-public class Test6 extends HttpServlet {
+@WebServlet("/Test5")
+public class Test5_printWriter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=utf-8");
+//		response.getWriter().append("Served at:(Test5) ").append(request.getContextPath());
 		
 		PrintWriter out = response.getWriter();
 		out.println("이곳은 서블릿에서 보냅니다.<br/>");

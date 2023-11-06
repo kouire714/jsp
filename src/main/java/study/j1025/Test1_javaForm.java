@@ -1,6 +1,6 @@
 package study.j1025;
 
-public class Test1 {
+public class Test1_javaForm {
 	public static void main(String[] args) {
 		int i=0, tot=0;
 		

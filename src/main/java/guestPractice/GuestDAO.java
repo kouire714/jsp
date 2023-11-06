@@ -1,4 +1,4 @@
-package guest;
+package guestPractice;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,11 +26,10 @@ public class GuestDAO {
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 검색 실패~~ " + e.getMessage());
 		} catch (SQLException e) {
-			System.out.println("DB연동 실패~~ " + e.getMessage());			
-		}
+			System.out.println("DB연동 실패~~ " + e.getMessage());
+		} 
 	}
 	
-	// 사용된 객체를 반납(conn, pstmt, rs)
 	public void connClose() {
 		if(conn != null) {
 			try {
@@ -55,15 +54,13 @@ public class GuestDAO {
 		}
 		pstmtClose();
 	}
-
+	
 	// 방명록 전체 리스트
-	public ArrayList<GuestVO> getGuestList(int startIndexNo, int pageSize) {
+	public ArrayList<GuestVO> getGuestList() {
 		ArrayList<GuestVO> vos = new ArrayList<GuestVO>();
 		try {
-			sql = "select * from guest order by idx desc limit ?,?";
+			sql = "select * from guestPractice order by idx desc";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startIndexNo);
-			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -75,7 +72,6 @@ public class GuestDAO {
 				vo.setContent(rs.getString("content"));
 				vo.setVisitDate(rs.getString("visitDate"));
 				vo.setHostIp(rs.getString("hostIp"));
-				
 				vos.add(vo);
 			}
 		} catch (SQLException e) {
@@ -84,58 +80,5 @@ public class GuestDAO {
 			rsClose();
 		}
 		return vos;
-	}
-
-	// 방명록에 글 등록시키기
-	public int setGuestInputOk(GuestVO vo) {
-		int res = 0;
-		try {
-			sql = "insert into guest values (default,?,?,?,?,default,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getName());
-			pstmt.setString(2, vo.getContent());
-			pstmt.setString(3, vo.getEmail());
-			pstmt.setString(4, vo.getHomePage());
-			pstmt.setString(5, vo.getHostIp());
-			res = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("SQL 오류 : " + e.getMessage());
-		} finally {
-			pstmtClose();
-		}
-		return res;
-	}
-
-	// 방명록 1건 삭제처리
-	public int setGuestDelete(int idx) {
-		int res = 0;
-		try {
-			sql = "delete from guest where idx = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			res = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("SQL 오류 : " + e.getMessage());
-		} finally {
-			pstmtClose();
-		}
-		return res;
-	}
-
-	// 총 레코드 건수 구하기
-	public int getTotRecCnt() {
-		int totRecCnt = 0;
-		try {
-			sql = "select count(*) as cnt from guest";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			rs.next();
-			totRecCnt = rs.getInt("cnt");
-		} catch (SQLException e) {
-			System.out.println("SQL 오류 : " + e.getMessage());
-		} finally {
-			rsClose();
-		}
-		return totRecCnt;
 	}
 }

@@ -2,21 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <title>index.jsp(guestPractice)</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JavaProject(index.jsp)</title>
-  <jsp:include page="/include/bs4.jsp" />
+  <jsp:include page="/includePractice/bs4.jsp"/>
   <style>
-	  .fakeimg {
-	    height: 200px;
-	    background: #aaa;
-	  }
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
   </style>
 </head>
 <body>
-<jsp:include page="/include/header.jsp" />
+<jsp:include page="/includePractice/header.jsp"/>
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
@@ -57,6 +57,6 @@
     </div>
   </div>
 </div>
-<jsp:include page="/include/footer.jsp" />
+<jsp:include page="/includePractice/footer.jsp" />
 </body>
 </html>
