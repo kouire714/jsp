@@ -84,7 +84,7 @@ public class MemberJoinOkCommand implements MemberInterface {
 			request.setAttribute("url", "memberLogin.mem");
 		}
 		else {
-			request.setAttribute("msg", "회원가입 실패~~.");
+			request.setAttribute("msg", "회원가입 실패~~");
 			request.setAttribute("url", "memberJoin.mem");
 		}
 	}

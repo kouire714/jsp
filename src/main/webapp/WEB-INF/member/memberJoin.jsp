@@ -22,10 +22,10 @@
     	
     	let regMid = /^[a-zA-Z0-9_]{4,20}$/;
     	let regPwd = /(?=.*[0-9a-zA-Z]).{4,20}$/;
-      	let regNickName = /^[가-힣]+$/;
-      	let regName = /^[가-힣a-zA-Z]+$/;
-      	let regEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-      	let regURL = /^(https?:\/\/)?([a-z\d\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/;
+      let regNickName = /^[가-힣]+$/;
+      let regName = /^[가-힣a-zA-Z]+$/;
+      let regEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+      let regURL = /^(https?:\/\/)?([a-z\d\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?$/;
     	let regTel = /\d{2,3}-\d{3,4}-\d{4}$/g;
     	
     	let mid = myform.mid.value.trim();
@@ -98,7 +98,7 @@
     		submitFlag = 1;
     	}
     	
-    	// 전송전에 '주소'를 하나로 묶어소 전송처리 준비한다.
+    	// 전송전에 '주소'를 하나로 묶어서 전송처리 준비한다.
     	let postcode = myform.postcode.value + " ";
     	let roadAddress = myform.roadAddress.value + " ";
     	let detailAddress = myform.detailAddress.value + " ";

@@ -33,9 +33,10 @@
   </style>
 </head>
 <body>
+<jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container text-center">
-<form name="myform" method="post" action="${ctp}/database/updateOk">
+<form name="myform" method="post" action="updateOk.lo">
   <h2>회원 정보 수정</h2>
   <table class="table table-bordered">
     <tr>
@@ -55,7 +56,7 @@
       <td colspan="2">
         <input type="button" value="정보수정" onclick="fCheck()" class="btn btn-success" />
         <input type="reset" value="다시입력" class="btn btn-warning" />
-        <input type="button" value="돌아가기" onclick="location.href='${ctp}/study/database/memberMain.jsp';" class="btn btn-success" />
+        <input type="button" value="돌아가기" onclick="location.href='memberMain.lo';" class="btn btn-success" />
       </td>
     </tr>
   </table>
@@ -63,5 +64,6 @@
 </form>
 </div>
 <p><br/></p>
+<jsp:include page="/include/footer.jsp" />
 </body>
 </html>
