@@ -27,7 +27,7 @@ public class GuestDAO {
 			System.out.println("드라이버 검색 실패~~ " + e.getMessage());
 		} catch (SQLException e) {
 			System.out.println("DB연동 실패~~ " + e.getMessage());
-		} 
+		}
 	}
 	
 	public void connClose() {
@@ -54,8 +54,7 @@ public class GuestDAO {
 		}
 		pstmtClose();
 	}
-	
-	// 방명록 전체 리스트
+
 	public ArrayList<GuestVO> getGuestList() {
 		ArrayList<GuestVO> vos = new ArrayList<GuestVO>();
 		try {
@@ -80,5 +79,24 @@ public class GuestDAO {
 			rsClose();
 		}
 		return vos;
+	}
+
+	public int setGuestInputOk(GuestVO vo) {
+		int res = 0;
+		try {
+			sql = "insert into guestPractice values (default,?,?,?,?,default,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getHomePage());
+			pstmt.setString(5, vo.getHostIp());
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
 	}
 }

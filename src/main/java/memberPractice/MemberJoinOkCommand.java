@@ -1,4 +1,4 @@
-package member;
+package memberPractice;
 
 import java.io.IOException;
 

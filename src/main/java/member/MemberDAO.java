@@ -19,6 +19,15 @@ public class MemberDAO {
 	
 	MemberVO vo = null;
 	
+	// conn 객체 반납?
+	public void connClose() {
+		if(conn != null) {
+			try {
+				conn.close();
+			} catch (Exception e) {}
+		}
+	}
+	
 	// pstmt 객체 반납
 	public void pstmtClose() {
 		if(pstmt != null) {

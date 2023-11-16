@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>index.jsp(guestPractice)</title>
+  <title>index.jsp(javaProjectPractice)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <jsp:include page="/includePractice/bs4.jsp"/>

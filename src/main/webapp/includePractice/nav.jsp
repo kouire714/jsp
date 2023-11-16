@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}" />
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="${ctp}/guestPractice.jsp">Home</a>
+  <a class="navbar-brand" href="${ctp}/indexPractice.jsp">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,10 +12,10 @@
         <a class="nav-link" href="${ctp}/guestPractice/GuestList">Guest</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${ctp}/BoardList">Board</a>
+        <a class="nav-link" href="${ctp}/memberLogin.pMem">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pds</a>
+        <a class="nav-link" href="${ctp}/memberJoin.pMem">Join</a>
       </li>    
     </ul>
   </div>  
