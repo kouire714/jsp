@@ -32,7 +32,6 @@
 	
 </script>
 <body>
-	<jsp:include page="/includePractice/header.jsp" />
 	<p><br/></p>
 	<div class="container">
 	<h3>닉네임 체크폼</h3>
@@ -51,6 +50,5 @@
 	</c:if>
 	</div>
 	<p><br/></p>
-	<jsp:include page="/includePractice/footer.jsp" />
 </body>
 </html>

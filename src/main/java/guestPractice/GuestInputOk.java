@@ -41,7 +41,7 @@ public class GuestInputOk extends HttpServlet {
     	out.println("</script>");
 		}
 		else {
-			out.println("<script>");
+		out.println("<script>");
     	out.println("alert('방명록 글 등록 실패~~');");
     	out.println("location.href='"+request.getContextPath()+"/guestPractice/guestInput.jsp';");
     	out.println("</script>");

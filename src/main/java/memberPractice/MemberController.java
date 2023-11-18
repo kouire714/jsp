@@ -19,15 +19,7 @@ public class MemberController extends HttpServlet {
 		String com = request.getRequestURI();
 		com = com.substring(com.lastIndexOf("/"),com.lastIndexOf("."));
 		
-		if(com.equals("/memberLogin")) {
-			viewPage += "/memberLogin.jsp";
-		}
-		else if(com.equals("/memberLoginOk")) {
-			command = new MemberLoginOkCommand();
-			command.execute(request, response);
-			viewPage = "/includePractice/message.jsp";
-		}
-		else if(com.equals("/memberJoin")) {
+		if(com.equals("/memberJoin")) {
 			viewPage += "/memberJoin.jsp";
 		}
 		else if(com.equals("/memberIdCheck")) {
@@ -45,11 +37,25 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/includePractice/message.jsp";
 		}
+		else if(com.equals("/memberLogin")) {
+			viewPage += "/memberLogin.jsp";
+		}
+		else if(com.equals("/memberLoginOk")) {
+			command = new MemberLoginOkCommand();
+			command.execute(request, response);
+			viewPage = "/includePractice/message.jsp";
+		}
+		else if(com.equals("/memberLogout")) {
+			command = new MemberLogoutCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
 		else if(com.equals("/memberMain")) {
 			command = new MemberMainCommand();
 			command.execute(request, response);
 			viewPage += "/memberMain.jsp";
 		}
+		
 		
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}

@@ -14,7 +14,6 @@ public class MemberDAO {
 	private ResultSet rs = null;
 	
 	private String sql = "";
-	
 	MemberVO vo = null;
 	
 	public void connClose() {

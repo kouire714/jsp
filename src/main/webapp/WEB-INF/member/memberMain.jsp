@@ -20,7 +20,8 @@
     정회원 등업조건...
   </pre>
   <hr/>
-  <div><img src="${ctp}/images/member/noimage.jpg" width="200px"/></div>
+  <%-- <div><img src="${ctp}/images/member/noimage.jpg" width="200px"/></div> --%>
+  <div><img src="${ctp}/images/member/${mVo.photo}"/></div>
   <hr/>
   <div>
   	<p>현재 ${sNickName}(${strLevel})님이 로그인 중이십니다.</p>

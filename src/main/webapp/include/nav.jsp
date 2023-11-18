@@ -5,10 +5,33 @@
   pageContext.setAttribute("level", level);  
 %>
 <c:set var="ctp" value="${pageContext.request.contextPath}" />
+<script>
+  function memberDelcheck() {
+	  let ans = confirm("회원 탈퇴 하시겠습니까?");
+	  if(ans) {
+		  let ans2 = confirm("탈퇴후 같은 아이디로는 1개월간 재가입하실수 없습니다.\n그래도 탈퇴 하시겠습니까?");
+		  if(!ans2) return false; 
+	  }
+	  else return false;
+	  
+	  // 회원 탈퇴(ajax처리)
+	  $.ajax({
+		  url  : "memberDelelteCheck.mem",
+		  type : "post",
+		  success:function(res) {
+			  if(res != '1') alert("회원 탈퇴 실패~~");
+			  else location.href = 'memberLogout.mem';
+		  },
+		  error : function() {
+			  alert("전송오류");
+		  }
+	  });
+  }
+</script>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- 햄버거버튼 -->
-  <a class="navbar-brand" href="http://localhost:9090/javaProject">Home</a>
-  <!-- <a class="navbar-brand" href="http://192.168.50.55:9090/javaProject">Home</a> -->
+  <!-- <a class="navbar-brand" href="http://localhost:9090/javaProject">Home</a> -->
+  <a class="navbar-brand" href="http://192.168.50.55:9090/jspProject">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,7 +42,7 @@
       </li>
       <c:if test="${level <= 4}">
 	      <li class="nav-item">
-	        <a class="nav-link" href="${ctp}/BoardList">Board</a>
+	        <a class="nav-link" href="boardList.bo">Board</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="/PdsList">Pds</a>
@@ -42,11 +65,23 @@
 	      </li>
 	      <li class="nav-item ml-2 mr-2">
 	        <div class="dropdown">
+				    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Study2</button>
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="fileUpload1.st">싱글파일업로드1</a>
+				      <a class="dropdown-item" href="fileUpload2.st">싱글파일업로드2</a>
+				      <a class="dropdown-item" href="fileUpload3.st">멀티파일업로드1</a>
+				      <a class="dropdown-item" href="fileUpload4.st">멀티파일업로드2</a>
+				      <a class="dropdown-item" href="fileDownload.st">다운로드이동</a>
+				    </div>
+				  </div>
+	      </li>
+	      <li class="nav-item ml-2 mr-2">
+	        <div class="dropdown">
 				    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">MyPage</button>
 				    <div class="dropdown-menu">
 				      <a class="dropdown-item" href="memberMain.mem">회원메인방</a>
 				      <a class="dropdown-item" href="memberPwdCheck.mem">회원정보수정</a>
-				      <a class="dropdown-item" href="memberList.mem">회원리스트</a>
+				      <c:if test="${sLevel != 1}"><a class="dropdown-item" href="mList.mem">회원리스트</a></c:if>
 				      <a class="dropdown-item" href="javascript:memberDelcheck()">회원탈퇴</a>
 				      <c:if test="${sLevel == 0}"><a class="dropdown-item" href="adminMain.ad">관리자메뉴</a></c:if>
 				    </div>
