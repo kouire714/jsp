@@ -101,6 +101,11 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+		else if(com.equals("/memberMessageInput")) {
+			command = new MemberMessageInputCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}
