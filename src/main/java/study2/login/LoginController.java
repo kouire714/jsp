@@ -73,7 +73,8 @@ public class LoginController extends HttpServlet {
 			command = new UpdateOkCommand();
 			command.execute(request, response);			
 			viewPage = "/include/message.jsp";
-		}	else if(com.equals("/deleteOk")) {
+		}	
+		else if(com.equals("/deleteOk")) {
 			command = new DeleteOkCommand();
 			command.execute(request, response);			
 			viewPage = "/include/message.jsp";

@@ -20,7 +20,7 @@
   <script>
     'use strict';
     
-    setTimeout("location.reload()", 1000*2);		// 현재는 2초마다 Refresh 한다.
+    /* setTimeout("location.reload()", 1000*2); */		// 현재는 2초마다 Refresh 한다.
     
     $(document).ready(function() {
     	document.body.scrollIntoView(false);	// 스크로바를 강제로 body태그 마지막으로 이동...

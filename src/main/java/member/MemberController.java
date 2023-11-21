@@ -77,7 +77,7 @@ public class MemberController extends HttpServlet {
 			viewPage += "/memberPwdCheck.jsp";
 		}
 		else if(com.equals("/memberPwdCheckOk")) {
-			command = new memberPwdCheckOkCommand();
+			command = new MemberPwdCheckOkCommand();
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
 		}
@@ -97,7 +97,7 @@ public class MemberController extends HttpServlet {
 			return;
 		}
 		else if(com.equals("/memberPwdChangeOk")) {
-			command = new memberPwdChangeOkCommand();
+			command = new MemberPwdChangeOkCommand();
 			command.execute(request, response);
 			return;
 		}
