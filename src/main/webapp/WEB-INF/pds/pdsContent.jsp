@@ -14,6 +14,24 @@
   <script>
     'use strict';
     
+    $(function(){
+    	$("#reviewShowBtn").hide();
+    	$("#reviewHideBtn").show();
+    	$("#reviewBox").show();
+    });
+    
+    function reviewShow() {
+    	$("#reviewShowBtn").hide();
+    	$("#reviewHideBtn").show();
+    	$("#reviewBox").show();
+    }
+    
+    function reviewHide() {
+    	$("#reviewShowBtn").show();
+    	$("#reviewHideBtn").hide();
+    	$("#reviewBox").hide();
+    }
+    
     // 다운로드수 증가시키기
     function downNumCheck(idx) {
     	$.ajax({
@@ -62,6 +80,20 @@
     		}
     	});
     }
+    
+    // 화살표클릭시 화면 처음으로 부드럽게 이동시키기
+    $(window).scroll(function(){
+    	if($(this).scrollTop() > 100) {
+    		$("#topBtn").addClass("on");
+    	}
+    	else {
+    		$("#topBtn").removeClass("on");
+    	}
+    	
+    	$("#topBtn").click(function(){
+    		window.scrollTo({top:0, behavior: "smooth"});	// 현재 페이지에서 특정 위치로 스크로이동시키는 명령어(window.scrollTo)
+    	});
+    });
   </script>
   <style>
     th {
@@ -144,7 +176,6 @@
   <hr/>
   <div>
   	<form name="starForm" id="starForm">
-    	<div class="text-right">리뷰평점 : <fmt:formatNumber value="${reviewAvg}" pattern="#,##0.0"/></div>
   	  <fieldset style="border:0px;">
     	  <div class="text-left viewPoint m-0 b-0">
     	    <input type="radio" name="star" value="5" id="star1"><label for="star1">★</label>
@@ -164,25 +195,39 @@
   	</form>
   </div>
   <hr/>
-  <c:forEach var="vo" items="${rVos}" varStatus="st">
-	  <div id="reviewBox">
+  <div class="row">
+    <div class="col">
+		  <span>
+		    <input type="button" value="리뷰보이기" id="reviewShowBtn" onclick="reviewShow()" class="btn btn-success"/>
+		    <input type="button" value="리뷰가리기" id="reviewHideBtn" onclick="reviewHide()" class="btn btn-warning"/>
+		  </span>
+	  </div>
+	  <div class="col text-right">
+	    <b>리뷰평점 : <fmt:formatNumber value="${reviewAvg}" pattern="#,##0.0" /></b>
+	  </div>
+	</div>
+	<hr/>
+  <div id="reviewBox">
+	  <c:forEach var="vo" items="${rVos}" varStatus="st">
 	  	<div class="row">
-	  	  <div class="col text-left"><b>${vo.mid}</b> ${fn:substring(vo.rDate,0,10)}</div>
+	  	  <div class="col text-left ml-2"><b>${vo.mid}</b> <span style="font-size:11px">${fn:substring(vo.rDate,0,10)}</span></div>
 	  	  <div class="col"></div>
 	  	  <div class="col text-right">
 	  	    <c:forEach var="i" begin="1" end="${vo.star}" varStatus="iSt">
 	  	    	<font color="gold">★</font>
 	  	    </c:forEach>
 	  	    <c:forEach var="i" begin="1" end="${5 - vo.star}" varStatus="iSt">☆</c:forEach>
+	  	    &nbsp;
 	  	  </div>
 	  	</div>
-	  	<div class="row border m-1 p-2">
+	  	<div class="row border m-1 p-2" style="border-radius:5px;">
 	  	  ${fn:replace(vo.content,newLine,'<br/>')}
 	  	</div>
-	  </div>
-	  <hr/>
-  </c:forEach>
-  <hr/>
+		  <hr/>
+	  </c:forEach>
+  </div>
+  
+  <!-- 자료실에 업도드한 사진 보여주기 -->
   <div class="text-center">
     <c:forEach var="fSName" items="${fSNames}" varStatus="st">
     	${st.count}. ${fSName}<br/>
@@ -196,6 +241,7 @@
     </c:forEach>
   </div>
 </div>
+<h6 id="topBtn" class="text-right mr-3"><img src="${ctp}/images/arrowTop.gif"/></h6>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp" />
 </body>
